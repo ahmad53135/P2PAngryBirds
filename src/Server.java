@@ -7,19 +7,28 @@ import java.rmi.registry.Registry;
  */
 public class Server {
 
-    private static int port;
-    Server(int myport) throws RemoteException {
-       port = myport;
-       main();
+    private AddressInfo addressInfo;
+    HelloServant helloServant;
+
+    Server(AddressInfo addressInfo) {
+        this.addressInfo = addressInfo;
+
     }
 
-    public static void main() throws RemoteException {
-        Registry registry = LocateRegistry.createRegistry(port);
+    public void start(int port) {
+        Registry registry = null;
+        try {
+            registry = LocateRegistry.createRegistry(port);
+            helloServant = new HelloServant();
+            //egistry.rebind(addressInfo.getUrl(), helloServant);//TODO
+            System.out.println("Server started: "+addressInfo.getUrl());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
 
-        System.out.println("Server started");
-        registry.rebind("hello", new HelloServant());
-        System.out.println("Server started");
-
+    public void setHelloService(HelloService helloService){
+        helloServant.setHelloService(helloService);
     }
 
 }

@@ -3,6 +3,5 @@ import java.rmi.RemoteException;
 
 public interface HelloService extends Remote {
 
-    public String echo (String inputstr) throws RemoteException;
-
+    String echo (String inputstr) throws RemoteException;
 }
