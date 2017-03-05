@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Boot {
-    public static void main(String[] args) throws RemoteException {
+    public static void main(String[] args) throws Exception {
 
 
         List<AddressInfo> addressInfos = new ArrayList<>();
@@ -31,7 +31,11 @@ public class Boot {
             R1.start(i);
         }
         for (Pig pig : pigs) {
-            pig.connect();
+            if(pig.isClientNull() == false){
+                pig.connect();
+            }
+
+
         }
 
     }

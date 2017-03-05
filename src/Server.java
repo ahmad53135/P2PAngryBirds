@@ -18,17 +18,20 @@ public class Server {
     public void start(int port) {
         Registry registry = null;
         try {
+            int i = port - 5050 ;
             registry = LocateRegistry.createRegistry(port);
             helloServant = new HelloServant();
-            //egistry.rebind(addressInfo.getUrl(), helloServant);//TODO
+            //registry.rebind(addressInfo.getUrl(), helloServant);//TODO
+            registry.rebind(Integer.toString(i), helloServant);
             System.out.println("Server started: "+addressInfo.getUrl());
         } catch (RemoteException e) {
             e.printStackTrace();
         }
     }
 
-    public void setHelloService(HelloService helloService){
+    public void setHelloService(HelloService helloService) {
         helloServant.setHelloService(helloService);
+
     }
 
 }

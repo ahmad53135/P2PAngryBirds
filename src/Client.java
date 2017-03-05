@@ -16,7 +16,9 @@ public class Client {
     public HelloService connect(){
         HelloService helloService = null;
         try {
+            //String url = "rmi://localhost:5050/0";
             helloService = (HelloService) Naming.lookup(addressInfo.getUrl());
+            //helloService = (HelloService) Naming.lookup(url);
 
         } catch (NotBoundException e) {
             e.printStackTrace();

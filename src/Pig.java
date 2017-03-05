@@ -23,6 +23,12 @@ class Pig  {
         server.start(port);
     }
 
+    public boolean isClientNull () throws  Exception{
+        if(this.client == null)
+            return true;
+        return false;
+    }
+
     public void connect() {
         HelloService helloService = client.connect();
         server.setHelloService(helloService);
