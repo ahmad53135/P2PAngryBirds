@@ -13,12 +13,12 @@ public class Client {
         this.addressInfo = addressInfo;
     }
 
-    public HelloService connect(){
-        HelloService helloService = null;
+    public PigService connect(){
+        PigService pigService = null;
         try {
             //String url = "rmi://localhost:5050/0";
-            helloService = (HelloService) Naming.lookup(addressInfo.getUrl());
-            //helloService = (HelloService) Naming.lookup(url);
+            pigService = (PigService) Naming.lookup(addressInfo.getUrl());
+            //pigService = (PigService) Naming.lookup(url);
 
         } catch (NotBoundException e) {
             e.printStackTrace();
@@ -27,6 +27,6 @@ public class Client {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-       return helloService;
+        return pigService;
     }
 }

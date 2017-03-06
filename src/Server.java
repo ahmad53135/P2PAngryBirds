@@ -8,7 +8,7 @@ import java.rmi.registry.Registry;
 public class Server {
 
     private AddressInfo addressInfo;
-    HelloServant helloServant;
+    PigServiceImpl pigServiceImpl;
 
     Server(AddressInfo addressInfo) {
         this.addressInfo = addressInfo;
@@ -20,18 +20,19 @@ public class Server {
         try {
             int i = port - 5050 ;
             registry = LocateRegistry.createRegistry(port);
-            helloServant = new HelloServant();
+            pigServiceImpl = new PigServiceImpl();
             //registry.rebind(addressInfo.getUrl(), helloServant);//TODO
-            registry.rebind(Integer.toString(i), helloServant);
+            registry.rebind(Integer.toString(i), pigServiceImpl);
             System.out.println("Server started: "+addressInfo.getUrl());
         } catch (RemoteException e) {
             e.printStackTrace();
         }
     }
 
-    public void setHelloService(HelloService helloService) {
-        helloServant.setHelloService(helloService);
+    public void setPigService(PigService pigService) {
+        pigServiceImpl.setPigService(pigService);
 
     }
 
 }
+

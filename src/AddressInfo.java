@@ -13,4 +13,7 @@ public class AddressInfo {
     public String getUrl(){
         return "rmi://"+address+":"+port+"/"+pigId;
     }
+    public String getAddress() {return address;}
+    public Integer getPort() { return  port;}
+    public Integer getPigId() { return  pigId;}
 }
